@@ -17,6 +17,7 @@ def main():
 
     tmr = 0
     en_y = 400
+    en_x = 100
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
@@ -25,13 +26,20 @@ def main():
             if en_y >= 0:
                 en_y -= 10 
         elif key_lst[pg.K_DOWN]:
-            if en_y <= 590:
+            if en_y <= 600:
                 en_y += 10
+        if key_lst[pg.K_RIGHT]:
+            if en_x <= 800:
+                en_x += 10
+        elif key_lst[pg.K_LEFT]:
+            if en_x >= 0:
+                en_x -= 10
+
         
-        txt = font.render(str(tmr), True, (255, 255, 255))
+        txt = font.render(f"{tmr}", True, (255, 255, 255))
         screen.fill((50, 50, 50))
         screen.blit(txt, [300, 200])
-        screen.blit(enn, [100, en_y])
+        screen.blit(enn, [en_x, en_y])
         pg.display.update()
         tmr += 1        
         clock.tick(60)
